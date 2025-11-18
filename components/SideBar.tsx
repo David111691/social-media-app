@@ -1,3 +1,4 @@
+import React from "react";
 import {
   HomeIcon,
   HashtagIcon,
@@ -11,27 +12,40 @@ import Image from "next/image";
 
 export default function SideBar() {
   return (
-    <nav className="hidden sm:flex flex-col sticky top-0">
-      <div>
-        <Image src={"/assets/busybee-logo.png"} width={48} height={48} />
+    <nav className="h-screen hidden sm:flex flex-col sticky top-0 p-3 xl:ml-20">
+      <div className="relative h-full">
+        <div className="py-3">
+          <Image src={"/assets/busybee-logo.png"} width={48} height={48} alt="bee logo"/>
+        </div>
+        <ul>
+          <SidebarLink Icon={HomeIcon} text="Home" />
+          <SidebarLink Icon={HashtagIcon} text="Explore" />
+          <SidebarLink Icon={BellIcon} text="Notifications" />
+          <SidebarLink Icon={InboxIcon} text="Messages" />
+          <SidebarLink Icon={BookmarkIcon} text="Bookmarks" />
+          <SidebarLink Icon={UserIcon} text="Profile" />
+          <SidebarLink Icon={EllipsisHorizontalCircleIcon} text="More" />
+          <button className="hidden xl:block bg-[#F4AF01] w-[200px] h-[52px] rounded-full text-white font-medium cursor-pointer shadow-md mt-2">
+            Bumble
+          </button>
+        </ul>
+        <div className="absolute bottom-0">User Info</div>
       </div>
-      <ul>
-        <SidebarLink Icon={HomeIcon} text="Home" />
-        <SidebarLink Icon={HashtagIcon} text="Explore" />
-        <SidebarLink Icon={BellIcon} text="Notifications" />
-        <SidebarLink Icon={InboxIcon} text="Messages" />
-        <SidebarLink Icon={BookmarkIcon} text="Bookmarks" />
-        <SidebarLink Icon={UserIcon} text="Profile" />
-        <SidebarLink Icon={EllipsisHorizontalCircleIcon} text="More" />
-      </ul>
-      <div>User Info</div>
     </nav>
   );
 }
 
-function SidebarLink({ text, Icon }) {
+interface SidebarLinkProps {
+  text: string;
+  Icon: React.ForwardRefExoticComponent<Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
+    title?: string;
+    titleId?: string;
+} & React.RefAttributes<SVGSVGElement>>;
+}
+
+function SidebarLink({ text, Icon }: SidebarLinkProps) {
   return (
-    <li className="flex items-center text-xl mb-6 space-x-3">
+    <li className="flex items-center text-xl mb-2 space-x-3 p-2.5">
       <Icon className="h-7" />
       <span className="hidden xl:block">{text}</span>
     </li>
