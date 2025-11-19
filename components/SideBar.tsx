@@ -15,7 +15,12 @@ export default function SideBar() {
     <nav className="h-screen hidden sm:flex flex-col sticky top-0 p-3 xl:ml-20">
       <div className="relative h-full">
         <div className="py-3">
-          <Image src={"/assets/busybee-logo.png"} width={48} height={48} alt="bee logo"/>
+          <Image
+            src={"/assets/busybee-logo.png"}
+            width={48}
+            height={48}
+            alt="bee logo"
+          />
         </div>
         <ul>
           <SidebarLink Icon={HomeIcon} text="Home" />
@@ -37,10 +42,12 @@ export default function SideBar() {
 
 interface SidebarLinkProps {
   text: string;
-  Icon: React.ForwardRefExoticComponent<Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-    title?: string;
-    titleId?: string;
-} & React.RefAttributes<SVGSVGElement>>;
+  Icon: React.ForwardRefExoticComponent<
+    Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
+      title?: string;
+      titleId?: string;
+    } & React.RefAttributes<SVGSVGElement>
+  >;
 }
 
 function SidebarLink({ text, Icon }: SidebarLinkProps) {
