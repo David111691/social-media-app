@@ -1,17 +1,24 @@
+"use client";
+import { RootState } from "@/redux/store";
 import LogInModal from "./modals/LogInModal";
 import SignUpModal from "./modals/SignUpModal";
+import { useSelector } from "react-redux";
 
 export default function SignUpPromt() {
+  const name = useSelector((state: RootState) => state.user.name);
+
   return (
-    <div className="fixed w-full h-[80px] bg-[#F4AF01] bottom-0 flex justify-center items-center md:space-x-5 lg:justify-between lg:px-20 xl:px-40 2xl:px-80">
-      <div className="hidden md:flex flex-col text-white">
-        <span className="text-xl font-bold">Don't miss out on the buzz</span>
-        <span>People on Busy Bee are always the first to know.</span>
+    !name && (
+      <div className="fixed w-full h-[80px] bg-[#F4AF01] bottom-0 flex justify-center items-center md:space-x-5 lg:justify-between lg:px-20 xl:px-40 2xl:px-80">
+        <div className="hidden md:flex flex-col text-white">
+          <span className="text-xl font-bold">Don't miss out on the buzz</span>
+          <span>People on Busy Bee are always the first to know.</span>
+        </div>
+        <div className="flex space-x-2 w-full p-3 md:w-fit">
+          <LogInModal />
+          <SignUpModal />
+        </div>
       </div>
-      <div className="flex space-x-2 w-full p-3 md:w-fit">
-        <LogInModal />
-        <SignUpModal />
-      </div>
-    </div>
+    )
   );
 }

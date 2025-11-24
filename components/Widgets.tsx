@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Widgets() {
   return (
-    <div className="p-3 hidden lg:flex flex-col space-y-4 w-[400px]">
+    <div className="p-3 hidden lg:flex flex-col space-y-4 w-[400px] ps-10">
       <div className="flex items-center space-x-3 bg-[#EFF3F4] text-[#89959D] h-[44px] rounded-full pl-5">
         <MagnifyingGlassIcon className="w-[20px] h-[20px] " />
         <input

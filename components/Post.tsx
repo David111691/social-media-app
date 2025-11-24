@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Post() {
   return (
-    <div>
+    <div className="border-b border-gray-100">
       <PostHeader />
 
       <div className="flex ml-16 p-3 space-x-14">
@@ -41,7 +41,7 @@ function PostHeader() {
         alt="Profile picture"
         className="w-11 h-11"
       />
-      <div className="text-[15px] flex flex-col space-y-1.5">
+      <div className="text-[15px] flex flex-col space-y-1.5 w-full">
         <div className="flex space-x-1.5 text-[#707E89]">
           <span className="inline-block font-bold text-[#0F1419] whitespace-nowrap overflow-hidden text-ellipsis max-w-[60px] min-[400px]:max-w-[100px] min-[500px]:max-w-[140px] min-[600px]:max-w-[160px]">
             Guest5224252234
@@ -52,7 +52,11 @@ function PostHeader() {
           <span>&middot;</span>
           <span>a day ago</span>
         </div>
-        <span>dfdfsdfsdfsdfgfdsgdgdsfgdsfgdfgdfdfsdfsdfsdfgf</span>
+        <div>
+          <p className="break-all">
+            dfdfsdfsdfsdfgfdsgdgdsfgdsfgdfgdfdfsdfsdfsdfgf
+          </p>
+        </div>
       </div>
     </div>
   );

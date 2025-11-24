@@ -1,16 +1,25 @@
 "use client";
+import { auth } from "@/firebase";
 import { closeLogInModal, openLogInModal } from "@/redux/slices/modalSlice";
 import { AppDispatch, RootState } from "@/redux/store";
 import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Modal } from "@mui/material";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function LogInModal() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const isOpen = useSelector((state: RootState) => state.modals.logInModalOpen);
   const dispatch: AppDispatch = useDispatch();
+
+  async function handleLogIn(e) {
+    e.preventDefault();
+    await signInWithEmailAndPassword(auth, email, password);
+  }
 
   return (
     <>
@@ -40,12 +49,16 @@ export default function LogInModal() {
                 className="w-full h-[54px] border border-gray-200 outline-none ps-3 rounded-[4px] focus:border-[#F4AF01] transition"
                 placeholder="Email"
                 type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               ></input>
               <div className="w-full h-[54px] flex items-center border border-gray-200 outline-none rounded-[4px] focus-within:border-[#F4AF01] transition overflow-hidden pr-3">
                 <input
                   className="ps-3 w-full h-full outline-none"
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 ></input>
                 <div
                   onClick={() => setShowPassword(!showPassword)}
@@ -55,7 +68,10 @@ export default function LogInModal() {
                 </div>
               </div>
             </div>
-            <button className="bg-[#F4AF01] text-white h-[48px] rounded-full shadow-md mb-5 w-full">
+            <button
+              className="bg-[#F4AF01] text-white h-[48px] rounded-full shadow-md mb-5 w-full"
+              onClick={(e) => handleLogIn(e)}
+            >
               Log in
             </button>
             <span className="mb-5 text-sm block text-center">Or</span>

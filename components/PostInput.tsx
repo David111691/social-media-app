@@ -9,13 +9,13 @@ import Image from "next/image";
 
 export default function PostInput() {
   return (
-    <div className="flex space-x-5">
+    <div className="flex space-x-5 border-b border-gray-100">
       <Image
         src={"/assets/busybee-logo.png"}
         width={48}
         height={48}
         alt="bee logo"
-        className="w-11 h-11"
+        className="w-11 h-11 ml-2 mt-1"
       />
       <div className="w-full">
         <textarea
@@ -23,7 +23,7 @@ export default function PostInput() {
           placeholder="What's happening!?"
         />
 
-        <div className="flex justify-between pt-1.5">
+        <div className="flex justify-between items-center pt-1.5 pb-1.5 pr-3 border-t border-gray-100">
           <div className="flex space-x-1.5">
             <PhotoIcon className="w-[22px] h-[22px] text-[#F4AF01]" />
             <ChartBarIcon className="w-[22px] h-[22px] text-[#F4AF01]" />
